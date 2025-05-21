@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             tbBoekenlijst = new ListBox();
+            btnAddboek = new Button();
+            btnRefresh = new Button();
             SuspendLayout();
             // 
             // tbBoekenlijst
@@ -40,11 +42,33 @@
             tbBoekenlijst.Size = new Size(443, 424);
             tbBoekenlijst.TabIndex = 1;
             // 
+            // btnAddboek
+            // 
+            btnAddboek.Location = new Point(481, 12);
+            btnAddboek.Name = "btnAddboek";
+            btnAddboek.Size = new Size(307, 37);
+            btnAddboek.TabIndex = 2;
+            btnAddboek.Text = "Voeg boek toe";
+            btnAddboek.UseVisualStyleBackColor = true;
+            btnAddboek.Click += btnAddboek_Click;
+            // 
+            // btnRefresh
+            // 
+            btnRefresh.Location = new Point(481, 71);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(71, 50);
+            btnRefresh.TabIndex = 3;
+            btnRefresh.Text = "Refresh";
+            btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.Click += btnRefresh_Click;
+            // 
             // Leeraarscherm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnRefresh);
+            Controls.Add(btnAddboek);
             Controls.Add(tbBoekenlijst);
             Name = "Leeraarscherm";
             Text = "Leeraarscherm";
@@ -54,5 +78,7 @@
         #endregion
 
         private ListBox tbBoekenlijst;
+        private Button btnAddboek;
+        private Button btnRefresh;
     }
 }

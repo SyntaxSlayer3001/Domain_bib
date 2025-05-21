@@ -14,16 +14,45 @@ namespace inlogformulier
 {
     public partial class Gebruikerscherm : Form
     {
+        private List<Boek> boekenlijst = new List<Boek>();
+
         public Gebruikerscherm()
         {
             InitializeComponent();
+            LoadBoeken();
+        }
+
+        private void LoadBoeken()
+        {
             var mapper = new Boekmapper();
-            var boekenlijst = mapper.GetBoeken();
+            boekenlijst = mapper.GetBoeken();
+            UpdateListBox(boekenlijst);
+        }
+
+        private void UpdateListBox(IEnumerable<Boek> boeken)
+        {
             tbBoekenlijst.Items.Clear();
-            foreach (var boeken in boekenlijst)
+            foreach (var boek in boeken)
             {
-                tbBoekenlijst.Items.Add(boeken); // ToString() wordt automatisch gebruikt
+                tbBoekenlijst.Items.Add(boek); // ToString() wordt automatisch gebruikt
             }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadBoeken();
+        }
+
+        private void btnAflopend_Click(object sender, EventArgs e)
+        {
+                var sorted = boekenlijst.OrderByDescending(b => b.Titel).ToList();
+            UpdateListBox(sorted);
+        }
+
+        private void btnOplopend_Click(object sender, EventArgs e)
+        {
+            var sorted = boekenlijst.OrderBy(b => b.Titel).ToList();
+            UpdateListBox(sorted);
         }
     }
 }

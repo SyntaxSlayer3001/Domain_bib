@@ -16,6 +16,11 @@ namespace inlogformulier
         public Leeraarscherm()
         {
             InitializeComponent();
+            LoadBoeken();
+        }
+
+        private void LoadBoeken()
+        {
             var mapper = new Boekmapper();
             var boekenlijst = mapper.GetBoeken();
             tbBoekenlijst.Items.Clear();
@@ -23,6 +28,17 @@ namespace inlogformulier
             {
                 tbBoekenlijst.Items.Add(boeken); // ToString() wordt automatisch gebruikt
             }
+        }
+
+        private void btnAddboek_Click(object sender, EventArgs e)
+        {
+            Form form = new Toevoegscherm();
+            form.ShowDialog();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadBoeken();
         }
     }
 }
