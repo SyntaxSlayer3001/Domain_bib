@@ -9,24 +9,42 @@ namespace Domain_bib.Business
 {
     public class Controller
     {
-        private string connectionString = "server=localhost;user=root;database=eindprojectbibliotheek;port=3306;password=1234";
 
-        public bool ValidateLogin(string username, string password)
+        //instantie van de persistence
+        private Persistence.Boekmapper _bibliotheek;
+        //instantie van onze klasse Boek
+        private Boek boek;
+        //instantievariabele van onze boekenlijst
+        private List<Boek> _boekenlijst;
+
+        //constructor
+        public Controller()
         {
-            using (var connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = "SELECT COUNT(*) FROM tblgebruiker WHERE tblgebruiker = @tblgebruiker AND password = @password";
-                using (var cmd = new MySqlCommand(query, connection))
-                {
-                    cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@password", password); // Let op: wachtwoorden horen gehasht te zijn!
-
-                    int count = Convert.ToInt32(cmd.ExecuteScalar());
-                    return count > 0;
-                }
-            }
+            //initialisatie van de instantievariabele
+            _bibliotheek = new Persistence.Boekmapper();
+            _boekenlijst = _bibliotheek.GetBoeken();
         }
+        public List<Boek> GetBoeken
+        {
+            get { return _boekenlijst; }
+            set { _boekenlijst = value; }
+        }
+        public void InsertBoek(string titel, int genreId, string auteur, string uitgever, string taal, int graad, string isbn)
+        {
+            //hier wordt de insert uitgevoerd
+            _bibliotheek.InsertBoek(titel, genreId, auteur, uitgever, taal, graad, isbn);
+            //hier wordt de boekenlijst opnieuw ingeladen
+            _boekenlijst = _bibliotheek.GetBoeken();
+        }
+        public bool ValidateLogin(string email, string password)
+        {
+            if (_bibliotheek == null)
+            {
+                _bibliotheek = new Persistence.Boekmapper();
+            }
+            return _bibliotheek.ValidateLogin(email, password);
+        }
+
     }
 }
 

@@ -12,19 +12,37 @@ namespace inlogformulier
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            string username = tbGebruikersnaam.Text;
+            string email = tbEmail.Text;
             string password = tbWachtwoord.Text;
 
-            if (controller.ValidateLogin(username, password))
+            var boekmapper = new Domain_bib.Persistence.Boekmapper();
+            int? rechtId = boekmapper.GetRechtId(email, password);
+
+            if (rechtId.HasValue)
             {
                 MessageBox.Show("Login successful!");
-                // Proceed to next form or main application
+                Form nextForm = rechtId switch
+                {
+                    1 => new Leeraarscherm(),
+                    2 => new Gebruikerscherm(),
+                    3 => new Beheerderscherm(),
+                    _ => null
+                };
+                if (nextForm != null)
+                {
+                    nextForm.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Unknown RechtID.");
+                }
             }
             else
             {
                 MessageBox.Show("Invalid username or password.");
             }
+
         }
-    }
     }
 }
