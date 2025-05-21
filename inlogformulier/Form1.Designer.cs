@@ -1,0 +1,104 @@
+﻿namespace inlogformulier
+{
+    partial class Form1
+    {
+        /// <summary>
+        ///  Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        ///  Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        ///  Required method for Designer support - do not modify
+        ///  the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            tbGebruikersnaam = new TextBox();
+            tbWachtwoord = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
+            loginButton = new Button();
+            SuspendLayout();
+            // 
+            // tbGebruikersnaam
+            // 
+            tbGebruikersnaam.Location = new Point(162, 48);
+            tbGebruikersnaam.Name = "tbGebruikersnaam";
+            tbGebruikersnaam.Size = new Size(561, 27);
+            tbGebruikersnaam.TabIndex = 0;
+            // 
+            // tbWachtwoord
+            // 
+            tbWachtwoord.Location = new Point(162, 175);
+            tbWachtwoord.Name = "tbWachtwoord";
+            tbWachtwoord.Size = new Size(561, 27);
+            tbWachtwoord.TabIndex = 1;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(21, 48);
+            label1.Name = "label1";
+            label1.Size = new Size(116, 20);
+            label1.TabIndex = 2;
+            label1.Text = "Gebruikersnaam";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(21, 175);
+            label2.Name = "label2";
+            label2.Size = new Size(93, 20);
+            label2.TabIndex = 3;
+            label2.Text = "Wachtwoord";
+            // 
+            // loginButton
+            // 
+            loginButton.Location = new Point(21, 261);
+            loginButton.Name = "loginButton";
+            loginButton.Size = new Size(767, 75);
+            loginButton.TabIndex = 4;
+            loginButton.Text = "Inloggen";
+            loginButton.UseVisualStyleBackColor = true;
+            loginButton.Click += loginButton_Click;
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(loginButton);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(tbWachtwoord);
+            Controls.Add(tbGebruikersnaam);
+            Name = "Form1";
+            Text = "Form1";
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+
+        private TextBox tbGebruikersnaam;
+        private TextBox tbWachtwoord;
+        private Label label1;
+        private Label label2;
+        private Button loginButton;
+    }
+}
